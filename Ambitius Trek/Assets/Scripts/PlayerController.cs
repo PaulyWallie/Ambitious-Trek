@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour {
     public string startPoint;
 
     public bool canMove;
+    public bool canAttack;
 
     private SFXManager sfxMan;
 
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         canMove = true;
+        canAttack = true;
 
         lastMove = new Vector2(0, -1);
     }
@@ -56,7 +58,7 @@ public class PlayerController : MonoBehaviour {
             myRigidBody.velocity = Vector2.zero;
             return;
         }
-
+     
         if (!attacking)
         {
             /*if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5)
@@ -98,8 +100,9 @@ public class PlayerController : MonoBehaviour {
                 myRigidBody.velocity = Vector2.zero;
             }
 
-            if (Input.GetKeyDown(KeyCode.J))
+            if (Input.GetKeyDown(KeyCode.J) && canAttack)
             {
+                canAttack = true;
                 attackTimeCounter = attackTime;
                 attacking = true;
                 myRigidBody.velocity = Vector2.zero;
